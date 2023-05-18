@@ -9,10 +9,11 @@ import lombok.Data;
 public class Device {
 
 
-    @ManyToOne
+    @ManyToOne//(fetch = FetchType.LAZY)
     private User user;
     private String deviceName;
     @Id
     @Column(unique = true)
+    @GeneratedValue
     private int mac;
     }

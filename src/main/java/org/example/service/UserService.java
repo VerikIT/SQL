@@ -15,14 +15,15 @@ public class UserService {
 
 //    @Transactional
     public List<User> findAll() {
+
         return userRepository.findAll();
     }
 //
 //    @Transactional // ?
     public User save(User user) {
         user = userRepository.save(user);
-       user.setLastName("booboo!");
-       user.setFirstName("aaa!");
+//       user.setLastName("booboo!");
+//       user.setFirstName("aaa!");
         return user;
     }
 //
