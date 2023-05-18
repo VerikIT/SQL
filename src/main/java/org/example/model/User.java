@@ -18,6 +18,6 @@ public class User {
     private String lastName;
     private String phoneNumber;
     private String gender;
-    @OneToMany (mappedBy = "userOne", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany (mappedBy = "user")
     private List<Device> devices;
 }
