@@ -22,8 +22,8 @@ public class UserController {
 //        return userService.findByName(name);
 //    }
 
-//    @PostMapping("/users")
-//    public User save(@RequestBody User user) {
-//        return userService.save(user);
-//    }
+    @PostMapping("/users")
+    public User save(@RequestBody User user) {
+        return userService.save(user);
+    }
 }

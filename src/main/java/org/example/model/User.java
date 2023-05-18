@@ -3,6 +3,7 @@ package org.example.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,6 +18,6 @@ public class User {
     private String lastName;
     private String phoneNumber;
     private String gender;
-    @OneToMany(mappedBy = "user")
+    @OneToMany (mappedBy = "userOne", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Device> devices;
 }

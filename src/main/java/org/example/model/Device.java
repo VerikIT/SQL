@@ -1,9 +1,6 @@
 package org.example.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -11,9 +8,11 @@ import lombok.Data;
 @Data
 public class Device {
     @Id
+//    @Column(name = "user_id")
     private Integer userId;
     private String deviceName;
-    private int MAC;
-    @ManyToOne
-    private User user;
+    @Column(unique = true)
+    private int mac;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private User userOne;
 }
