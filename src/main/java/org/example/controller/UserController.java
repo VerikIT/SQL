@@ -23,8 +23,16 @@ public class UserController {
         return userService.save(user);
     }
 
-//    @GetMapping("/users/{name}")
-//    public List<User> findByName(@PathVariable String name) {
-//        return userService.findByName(name);
-//    }
+    @GetMapping("/{id}")
+    public User FindById(@PathVariable Integer id) {
+        return userService.findById(id);
+    }
+    @DeleteMapping("/{id}")
+    public String deleteById(@PathVariable int id) {
+        return userService.deleteById(id);
+    }
+    @GetMapping("/users/{name}")
+    public List<User> findByName(@PathVariable String name) {
+        return userService.findByName(name);
+    }
 }
