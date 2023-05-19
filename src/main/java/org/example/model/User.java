@@ -17,13 +17,16 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @OneToMany (mappedBy = "user",fetch = FetchType.LAZY)
-    private List<Device> devices=new ArrayList<>();
-   // @Column(name = "first_name", unique = true)
+
+    @OneToMany (mappedBy = "user")
+
+    private List<Device> devices;
+
     private String firstName;
     private String lastName;
     private String phoneNumber;
     private String gender;
+
 
 
 }

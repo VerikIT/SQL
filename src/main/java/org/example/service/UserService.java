@@ -13,6 +13,7 @@ import java.util.List;
 public class UserService {
     private final UserRepository userRepository;
 
+
     //    @Transactional
     public List<User> findAll() {
 
@@ -25,6 +26,10 @@ public class UserService {
 //       user.setLastName("booboo!");
 //       user.setFirstName("aaa!");
         return user;
+    }
+    public User findById(int id) {
+
+        return userRepository.findById(id).orElse(null);
     }
 
 //    public List<User> findByName(String name) {

@@ -9,11 +9,16 @@ import lombok.Data;
 public class Device {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Integer id;
     private Integer mac;
+
     private String deviceName;
+    @Transient
+    private Integer UserId;
     @ManyToOne//(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id",nullable = true)
     private User user;
+
 
     }
