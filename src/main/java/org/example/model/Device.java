@@ -7,13 +7,13 @@ import lombok.Data;
 @Table(name = "devices")
 @Data
 public class Device {
-
-
-    @ManyToOne//(fetch = FetchType.LAZY)
-    private User user;
-    private String deviceName;
     @Id
-    @Column(unique = true)
-    @GeneratedValue
-    private int mac;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private Integer mac;
+    private String deviceName;
+    @ManyToOne//(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id",nullable = true)
+    private User user;
+
     }

@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.example.model.User;
 import org.example.service.UserService;
@@ -17,13 +18,13 @@ public class UserController {
         return userService.findAll();
     }
 
-//    @GetMapping("/users/{name}")
-//    public List<User> findByName(@PathVariable String name) {
-//        return userService.findByName(name);
-//    }
-
     @PostMapping("/users")
     public User save(@RequestBody User user) {
         return userService.save(user);
     }
+
+//    @GetMapping("/users/{name}")
+//    public List<User> findByName(@PathVariable String name) {
+//        return userService.findByName(name);
+//    }
 }
