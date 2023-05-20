@@ -1,7 +1,7 @@
 package org.example.controller;
 
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.example.model.Device;
 import org.example.model.User;
 import org.example.service.UserService;
 import org.springframework.web.bind.annotation.*;
@@ -9,16 +9,22 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/users")
 @RequiredArgsConstructor
 public class UserController {
+
     private final UserService userService;
 
-    @GetMapping("/users")
+    @GetMapping
     public List<User> findAll() {
         return userService.findAll();
     }
+    @GetMapping("/{userId}/devices")
+    public List<Device> FindUserDevices(@PathVariable int userId ) {
+        return userService.FindUserDevices(userId);
+    }
 
-    @PostMapping("/users")
+    @PostMapping
     public User save(@RequestBody User user) {
         return userService.save(user);
     }
@@ -27,12 +33,15 @@ public class UserController {
     public User FindById(@PathVariable Integer id) {
         return userService.findById(id);
     }
-    @DeleteMapping("/{id}")
-    public String deleteById(@PathVariable int id) {
-        return userService.deleteById(id);
-    }
-    @GetMapping("/users/{name}")
+    @GetMapping("/{name}/find")
     public List<User> findByName(@PathVariable String name) {
         return userService.findByName(name);
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable int id) {
+        userService.deleteById(id);
+    }
+
+
 }

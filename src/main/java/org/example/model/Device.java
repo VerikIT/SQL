@@ -1,7 +1,9 @@
 package org.example.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+
 
 @Entity
 @Table(name = "devices")
@@ -14,11 +16,11 @@ public class Device {
     private Integer mac;
 
     private String deviceName;
-    @Transient
-    private Integer UserId;
-    @ManyToOne//(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id",nullable = true)
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = true)
+    @JsonIgnore
     private User user;
 
 
-    }
+}

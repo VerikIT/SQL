@@ -1,11 +1,9 @@
 package org.example.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.transaction.Transactional;
 import lombok.Data;
 
-import java.lang.ref.Reference;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,7 +16,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToMany (mappedBy = "user")
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
 
     private List<Device> devices;
 
@@ -26,7 +25,6 @@ public class User {
     private String lastName;
     private String phoneNumber;
     private String gender;
-
 
 
 }
