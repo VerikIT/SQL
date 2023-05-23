@@ -1,21 +1,29 @@
 package org.example.service;
 
 import jakarta.transaction.Transactional;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
 import org.example.model.Device;
 import org.example.model.User;
-import org.example.repository.DeviceRepository;
 import org.example.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @Transactional
 public class UserService {
     private final UserRepository userRepository;
+    private static final String DEVICE_SERVICE_URL = "http://localhost:8181/devices/";
+    private RestTemplate restTemplate;
+    @Autowired
+
+    public UserService(UserRepository userRepository, RestTemplate restTemplate) {
+        this.userRepository = userRepository;
+        this.restTemplate = restTemplate;
+    }
 
     public List<User> findAll() {
         return userRepository.findAll();
@@ -35,12 +43,11 @@ public class UserService {
     }
 
     public List<User> findByName(String name) {
-        var data = userRepository.findByLike(name);
-        return data;
+       return userRepository.findByLike(name);
     }
 
     public List<Device> FindUserDevices(Integer userId) {
-        User user = findById(userId);
-        return user.getDevices();
+
+        return findById(userId).getDevices();
     }
 }

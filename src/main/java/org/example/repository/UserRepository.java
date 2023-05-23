@@ -11,11 +11,11 @@ import java.util.List;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
-
-//    List<User> findByFirstNameContaining(String firstName);
-//
     @Query("SELECT u FROM User u WHERE u.firstName like %?1%")
     List<User> findByLike(String firstName);
+
+    //    List<User> findByFirstNameContaining(String firstName);
+//
 //
 //    @Query("SELECT u FROM User u WHERE u.firstName like %?1%")
 //    Page<User> findByLike(String firstName, Pageable pageable);

@@ -1,26 +1,32 @@
 package org.example.controller;
 
-import lombok.RequiredArgsConstructor;
 import org.example.model.Device;
 import org.example.model.User;
 import org.example.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/users")
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
+
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping
     public List<User> findAll() {
         return userService.findAll();
     }
+
     @GetMapping("/{userId}/devices")
-    public List<Device> FindUserDevices(@PathVariable int userId ) {
+    public List<Device> FindUserDevices(@PathVariable int userId) {
         return userService.FindUserDevices(userId);
     }
 
@@ -33,6 +39,7 @@ public class UserController {
     public User FindById(@PathVariable Integer id) {
         return userService.findById(id);
     }
+
     @GetMapping("/{name}/find")
     public List<User> findByName(@PathVariable String name) {
         return userService.findByName(name);
